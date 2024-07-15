@@ -1,36 +1,42 @@
-﻿// 1. 1. Mood-based Music Recommender
+﻿namespace Number02;
 
-namespace Assignment01;
-
-using System;
-
-public class MusicRecommender
+class Program
 {
-    public static string GetMusicRecommendation(string mood)
-    {
-        switch (mood.ToLower())
-        {
-            case "happy":
-                return " Yay!!!! Upbeat pop songs to keep you cheerful :D!";
-            case "sad":
-                return " Awwnn Melancholic songs to match your mood :( ";
-            case "energetic":
-                return " Alrighty! High-tempo, rock or electronic music to boost your energy !!!";
-            case "relaxed":
-                return " Ahhhh Smooth jazz or acoustic tunes for a calming effect.";
-            default:
-                return " A mix of genres to explore!";
-        }
-    }
-
-    public static void Main(string[] args)
-    {
-        Console.WriteLine("Enter your mood:");
-        string mood = Console.ReadLine();
-        string recommendation = GetMusicRecommendation(mood);
-        Console.WriteLine(recommendation);
-    }
     
-}
+        class TrafficLightSimulator
+        {
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Please enter the seconds elapsed in a 30-second cycle:");
+                string input = Console.ReadLine();
+                int secondsElapsed = int.Parse(input);
+                
+                string currentColor = GetTrafficLightColor(secondsElapsed);
+                
+                Console.WriteLine("The current traffic light color is: " + currentColor);
+            }
 
+            static string GetTrafficLightColor(int secondsElapsed)
+            {
+                // Define the duration of each light in seconds
+                int greenDuration = 15;
+                int yellowDuration = 3;
+                int redDuration = 12;
 
+                // Calculate the current color based on the seconds elapsed
+                if (secondsElapsed < greenDuration)
+                {
+                    return "Green";
+                }
+                else if (secondsElapsed < greenDuration + yellowDuration)
+                {
+                    return "Yellow";
+                }
+                else
+                {
+                    return "Red";
+                }
+            }
+        }
+
+    }
