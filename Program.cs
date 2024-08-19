@@ -1,42 +1,45 @@
-﻿namespace Number02;
+﻿using System;
 
-class Program
+class NumberGuessingGame
 {
-    
-        class TrafficLightSimulator
+    static void Main()
+    {
+        Random random = new Random();
+        int secretNumber = random.Next(1, 101); // Generates a random number between 1 and 100
+        int guess;
+        int attempts = 0;
+        bool guessedCorrectly = false;
+
+        Console.WriteLine("Welcome to the Number Guessing Game!");
+        Console.WriteLine("I have selected a number between 1 and 100. Try to guess it.");
+
+        while (!guessedCorrectly)
         {
-            static void Main(string[] args)
+            Console.Write("Enter your guess: ");
+            string input = Console.ReadLine();
+
+            if (!int.TryParse(input, out guess))
             {
-                Console.WriteLine("Please enter the seconds elapsed in a 30-second cycle:");
-                string input = Console.ReadLine();
-                int secondsElapsed = int.Parse(input);
-                
-                string currentColor = GetTrafficLightColor(secondsElapsed);
-                
-                Console.WriteLine("The current traffic light color is: " + currentColor);
+                Console.WriteLine("Please enter a valid number.");
+                continue;
             }
 
-            static string GetTrafficLightColor(int secondsElapsed)
-            {
-                // Define the duration of each light in seconds
-                int greenDuration = 15;
-                int yellowDuration = 3;
-                int redDuration = 12;
+            attempts++;
+            secretNumber = 60;
 
-                // Calculate the current color based on the seconds elapsed
-                if (secondsElapsed < greenDuration)
-                {
-                    return "Green";
-                }
-                else if (secondsElapsed < greenDuration + yellowDuration)
-                {
-                    return "Yellow";
-                }
-                else
-                {
-                    return "Red";
-                }
+            if (guess < secretNumber)
+            {
+                Console.WriteLine(" That's Lower! Try again.");
+            }
+            else if (guess > secretNumber)
+            {
+                Console.WriteLine("That's Higher! Try again.");
+            }
+            else
+            {
+                guessedCorrectly = true;
+                Console.WriteLine($"Congratulations! You've guessed the number {secretNumber} correctly in {attempts} attempts.");
             }
         }
-
     }
+}
